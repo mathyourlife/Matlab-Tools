@@ -1,0 +1,31 @@
+KF_NonUniform_Timestamp.m - Kalman Filtering with a Non-Uniform Timestep
+
+This simulates a noisy second order system, and uses the noisy measurement
+provided at irregular intervals to estimate the state using a Kalman Filter.
+
+A regular implementation of the kalman filter would predetermine the 
+state space matrices, but become less effective as the size of the 
+timestep during a simulation varies.  This code creates a function_handle 
+to generate the appropriately sized state space matrices during runtime.
+
+The code is well documented as to provide insight into the purpose
+of each step and the calculations that are being used.
+
+Created: Sat, 29 Dec 2012 20:00 UTC by Daniel Couture
+
+------------------------------------------------------------------
+
+Usage:
+
+>> KF_NonUniform_Timestep()
+
+Plot Generated:
+Plot of x, x_est x_truth, x_err
+
+Text Output:
+Kalman Filter for a Non-Uniform Timestep
+60 sec simulation with timesteps avg = 0.2 sec, stdev = 0.06 sec
+Simulation Complete
+ Final state error: 2.10357
+
+------------------------------------------------------------------
