@@ -70,10 +70,10 @@ function n = fitNormal(data, show_graph)
 	end
 	
 	range = max(max(data) - min(data)) / 2;
-	center = (max(data) - min(data)) / 2 + min(data);
-	xlim = [-1 1]*range + center(1);
-	ylim = [-1 1]*range + center(2);
-	zlim = [-1 1]*range + center(3);
+	mid_pt = (max(data) - min(data)) / 2 + min(data);
+	xlim = [-1 1]*range + mid_pt(1);
+	ylim = [-1 1]*range + mid_pt(2);
+	zlim = [-1 1]*range + mid_pt(3);
 
 	L=plot3(data(:,1),data(:,2),data(:,3),'ro','Markerfacecolor','r'); % Plot the original data points
 	hold on;
