@@ -11,7 +11,7 @@ function n = fitNormal(data, show_graph)
 % :type data: Nx3 matrix
 %
 % :param show_graph: Option to display plot the result (default false)
-% :type show graph: logical
+% :type show_graph: logical
 %
 % :return n: Unit vector that is normal to the fit plane
 % :type n: 3x1 vector
