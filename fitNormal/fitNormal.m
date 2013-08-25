@@ -6,22 +6,15 @@ function n = fitNormal(data, show_graph)
 %normal to that plane with an initial point at the average
 %of the x, y, and z values.
 %
-% Input:
-% @data
-%   value - Matrix composed of of N sets of (x,y,z) coordinates
-%           with dimensions Nx3
-%   type  - Nx3 matrix
-% @show_graph
-%   value   - Option to display plot the result
-%   default - false
-%   type    - logical
+% :param data: Matrix composed of of N sets of (x,y,z) coordinates
+%              with dimensions Nx3
+% :type data: Nx3 matrix
 %
-% Return:
-% @n
-%   value - Unit vector that is normal to the fit
-%           plane and initial point the average of the
-%           @data.y, @data.y, @data.z
-%   type  - 3x1 vector
+% :param show_graph: Option to display plot the result (default false)
+% :type show_graph: logical
+%
+% :return n: Unit vector that is normal to the fit plane
+% :type n: 3x1 vector
 	
 	if nargin == 1
 		show_graph = false;
@@ -76,11 +69,17 @@ function n = fitNormal(data, show_graph)
 		return
 	end
 	
+	range = max(max(data) - min(data)) / 2;
+	mid_pt = (max(data) - min(data)) / 2 + min(data);
+	xlim = [-1 1]*range + mid_pt(1);
+	ylim = [-1 1]*range + mid_pt(2);
+	zlim = [-1 1]*range + mid_pt(3);
+
 	L=plot3(data(:,1),data(:,2),data(:,3),'ro','Markerfacecolor','r'); % Plot the original data points
 	hold on;
-	set(get(L, 'Parent'),'DataAspectRatio',[1 1 1],'XLim',[-1 1],'YLim',[-1 1],'ZLim',[-1 1]);
+	set(get(L, 'Parent'),'DataAspectRatio',[1 1 1],'XLim',xlim,'YLim',ylim,'ZLim',zlim);
 	
-	norm_data = [mean(data); mean(data) + n'];
+	norm_data = [mean(data); mean(data) + (n' * range)];
 	
 	% Plot the original data points
 	L=plot3(norm_data(:,1),norm_data(:,2),norm_data(:,3),'b-','LineWidth',3);
